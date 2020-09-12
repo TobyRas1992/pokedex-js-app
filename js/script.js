@@ -9,5 +9,9 @@ let pokemonList = [
 ];
 
 for (i=0; pokemonList.length; i++){
-  document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + ')');
+  if (pokemonList[i].height > 20) {
+    document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + ') - Wow, that\'s a big Pokemon!');
+  } else {
+    document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + ')');
+  }
 }
