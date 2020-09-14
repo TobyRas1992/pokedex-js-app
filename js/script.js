@@ -12,7 +12,7 @@ let introText2= ')';
 let specialText = ') - Wow, that\'s a big Pokemon!'
 let space = ' '
 
-for (i=0; pokemonList.length; i++){
+for (i=0; i < pokemonList.length; i++){
   if (pokemonList[i].height > 20) {
     document.write(pokemonList[i].name + introText1 + pokemonList[i].height + specialText + space);
   } else {
