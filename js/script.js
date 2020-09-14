@@ -14,8 +14,8 @@ let space = ' '
 
 for (i=0; i < pokemonList.length; i++){
   if (pokemonList[i].height > 20) {
-    document.write(pokemonList[i].name + introText1 + pokemonList[i].height + specialText + space);
+    document.write("<p>" + pokemonList[i].name + introText1 + pokemonList[i].height + specialText + space + "</p>");
   } else {
-    document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + introText2 + space);
+    document.write("<p>" + pokemonList[i].name + ' (height: ' + pokemonList[i].height + introText2 + space) + "</p>";
   }
 }
