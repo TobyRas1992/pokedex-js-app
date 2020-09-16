@@ -29,9 +29,3 @@ let newPokemonList = pokemonRepository.getAll();
 newPokemonList.forEach((pokemon, i) => {
    document.write("<p>" + pokemon.name + ' (height: ' + newPokemonList[i].height + introText2 + space+ "</p>") ;
 });
-
-
-// let secondPokemonRepository = pokemonRepository.getAll();
-// secondPokemonRepository.forEach((item, i) => {
-//     document.write("<p>" + secondPokemonRepository[i].name + ' (height: ' + secondPokemonRepository[i].height + introText2 + space) + "</p>";
-// });
