@@ -1,3 +1,7 @@
+let introText1 = ' (height: ';
+let introText2= ')';
+let space = ' ';
+
 let pokemonRepository = (function (){
   let pokemonList = [
     {name: 'Bulbasaur', type: ['grass', 'poison'], height: 2},
@@ -9,7 +13,7 @@ let pokemonRepository = (function (){
     {name: 'Infernape', type: ['fire', 'fighting'], height: 3.11}
     ];
     function add (item) {
-      pokemonList.push (item)
+      pokemonList.push (item);
     }
     function getAll () {
       return pokemonList;
@@ -18,15 +22,18 @@ let pokemonRepository = (function (){
       add: add,
       getAll: getAll
     };
-})
-
-
-let introText1 = ' (height: ';
-let introText2= ')';
-let specialText = ') - Wow, that\'s a big Pokemon!'
-let space = ' '
-
-let secondPokemonRepository = pokemonRepository.getAll();
-secondPokemonRepository.forEach((item, i) => {
-    document.write("<p>" + secondPokemonRepository[i].name + ' (height: ' + secondPokemonRepository[i].height + introText2 + space) + "</p>";
 });
+
+let newPokemonList = getAll();
+
+newPokemonList.forEach((item, i) => {
+   document.write("<p>" + newPokemonList + ' (height: ' + newPokemonList[i].height + introText2 + space+ "</p>") ;
+});
+
+
+
+
+// let secondPokemonRepository = pokemonRepository.getAll();
+// secondPokemonRepository.forEach((item, i) => {
+//     document.write("<p>" + secondPokemonRepository[i].name + ' (height: ' + secondPokemonRepository[i].height + introText2 + space) + "</p>";
+// });
