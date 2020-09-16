@@ -13,7 +13,12 @@ let pokemonRepository = (function (){
     {name: 'Infernape', type: ['fire', 'fighting'], height: 3.11}
     ];
     function add (item) {
-      pokemonList.push (item);
+      if (typeof(item) == 'object' || item instanceof Object) {
+        console.log(typeof item);
+        pokemonList.push (item);
+      } else {
+        console.log('Invalid data type.');
+      }
     }
     function getAll () {
       return pokemonList;
@@ -29,3 +34,8 @@ let newPokemonList = pokemonRepository.getAll();
 newPokemonList.forEach((pokemon, i) => {
    document.write("<p>" + pokemon.name + ' (height: ' + newPokemonList[i].height + introText2 + space+ "</p>") ;
 });
+
+//trouble getting this to work - I get an error in chrome dev. 
+newPokemonList.add(
+  {name: 'JimBob', type: ['grass', 'steel'], height: 5}
+);
