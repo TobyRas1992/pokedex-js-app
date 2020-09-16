@@ -22,15 +22,13 @@ let pokemonRepository = (function (){
       add: add,
       getAll: getAll
     };
+})();
+
+let newPokemonList = pokemonRepository.getAll();
+
+newPokemonList.forEach((pokemon, i) => {
+   document.write("<p>" + pokemon.name + ' (height: ' + newPokemonList[i].height + introText2 + space+ "</p>") ;
 });
-
-let newPokemonList = getAll();
-
-newPokemonList.forEach((item, i) => {
-   document.write("<p>" + newPokemonList + ' (height: ' + newPokemonList[i].height + introText2 + space+ "</p>") ;
-});
-
-
 
 
 // let secondPokemonRepository = pokemonRepository.getAll();
