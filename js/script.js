@@ -3,7 +3,7 @@ let introText2= ')';
 let space = ' ';
 
 let pokemonRepository = (function (){
-  let pokemonList = [
+  let repository = [
     {name: 'Bulbasaur', type: ['grass', 'poison'], height: 2},
     {name: 'Charizard', type: ['fire', 'flying'], height: 5.07},
     {name: 'Jigglypuff', type: ['normal', 'fairy'], height: 1.08},
@@ -12,30 +12,44 @@ let pokemonRepository = (function (){
     {name: 'Onix', type: ['rock', 'ground'], height: 28},
     {name: 'Infernape', type: ['fire', 'fighting'], height: 3.11}
     ];
-    function add (item) {
-      if (typeof(item) == 'object' || item instanceof Object) {
-        console.log(typeof item);
-        pokemonList.push (item);
+    function add (pokemon) {
+      if ( typeof pokemon === "object" &&
+      "name" in pokemon &&
+      "height" in pokemon &&
+      "types" in pokemon) {
+        console.log(typeof pokemon);
+        repository.push (pokemon);
       } else {
         console.log('Invalid data type.');
       }
     }
     function getAll () {
-      return pokemonList;
+      return repository;
+    }
+    function addListItem(pokemon) {
+      let pokemonList  = document.querySelector('.pokemon-list');
+      let listItem = document.createElement('li');
+      let button = document.createElement('button'); //creation of my button element.
+      button.innerText = pokemon.name;
+      button.classList.add('pokemon-button');
+      listItem.appendChild(button);
+      pokemonList.appendChild(listItem);
+      button.addEventListener('click', showDetails(pokemon)); //my event handeler for the button, which shows extra details on the pokemon.
+    }
+    function showDetails (pokemon){
+      console.log(pokemon);
     }
     return {
       add: add,
-      getAll: getAll
+      getAll: getAll,
+      addListItem: addListItem
     };
 })();
 
-let newPokemonList = pokemonRepository.getAll();
+pokemonRepository.add({ name: "Pikachu", height: 0.3, types: ["electric"] });
 
-newPokemonList.forEach((pokemon, i) => {
-   document.write("<p>" + pokemon.name + ' (height: ' + newPokemonList[i].height + introText2 + space+ "</p>") ;
+console.log(pokemonRepository.getAll());
+
+pokemonRepository.getAll().forEach(function (pokemon) {
+  pokemonRepository.addListItem(pokemon);
 });
-
-//trouble getting this to work - I get an error in chrome dev. 
-newPokemonList.add(
-  {name: 'JimBob', type: ['grass', 'steel'], height: 5}
-);
