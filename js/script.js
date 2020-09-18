@@ -37,7 +37,7 @@ let pokemonRepository = (function (){
       button.addEventListener('click', showDetails(pokemon)); //my event handeler for the button, which shows extra details on the pokemon.
     }
     function showDetails (pokemon){
-      console.log(pokemon);
+      console.log(pokemon.name, pokemon.type, pokemon.height);
     }
     return {
       add: add,
