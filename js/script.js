@@ -49,7 +49,7 @@ let pokemonRepository = (function (){
     };
 })();
 
-pokemonRepository.add({ name: "Pikachu", height: 0.3, types: ["electric"] });
+pokemonRepository.add({ name: "Pikachu", height: 0.3, type: ["electric"] });
 
 console.log(pokemonRepository.getAll());
 
