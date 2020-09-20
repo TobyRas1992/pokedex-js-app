@@ -16,7 +16,7 @@ let pokemonRepository = (function (){
       if ( typeof pokemon === "object" &&
       "name" in pokemon &&
       "height" in pokemon &&
-      "types" in pokemon) {
+      "type" in pokemon) {
         console.log(typeof pokemon);
         repository.push (pokemon);
       } else {
@@ -34,10 +34,9 @@ let pokemonRepository = (function (){
       button.classList.add('pokemon-button');
       listItem.appendChild(button);
       pokemonList.appendChild(listItem);
-      // button.addEventListener('click',() => showDetails(pokemon));
-      buttonEvent(button, pokemon); 
+      addClickListenerToButton (button, pokemon);
     }
-    function buttonEvent(button, pokemon){
+    function addClickListenerToButton (button, pokemon){
       button.addEventListener('click',() => showDetails(pokemon));//my event handeler for the button, which shows extra details on the pokemon.
     }
     function showDetails (pokemon){
