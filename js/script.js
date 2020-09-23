@@ -31,9 +31,11 @@ let pokemonRepository = (function () { //Creates an IIFE.
 
   function loadList() { // this function is a promise function, specifically a 'fetch' function.
     // We fetch the API, make it a promise, and the result of it will be a response.
+    showLoadingMessage();
     return fetch(apiUrl).then(function (response) {
       return response.json(); // We need to use the json property to parse the response body into JSON Data. This returns a promised object!
     }).then(function (json) { // NOW we get the actual JSON promise! If the promise within the response.json() is resolved, any data passed in the resolve function will be available in the next .then() block,
+      hideLoadingMessage();
       json.results.forEach(function (item) { //then we run a foreach loop on results key from the json.
         let pokemon = { // We assign these two keys to the a variable.
           name: item.name,
@@ -44,30 +46,34 @@ let pokemonRepository = (function () { //Creates an IIFE.
         console.log(pokemon); // this logs all the pokemon to the console log when we execute the program.
       });
     }).catch(function (e) { // the catch block handles any erros that may occur if the promise is rejected.
+      hideLoadingMessage();
       console.error(e);
     })
   }
 //This function is an experiment to see if I can add the type to the pokemonList.
-function loadType(item) {
-  let typeOfPokemon = item.detailsUrl;
-  return fetch(url). then((response)=> {
-    return response.json();
-  }).then((details) =>{
-    item.pokemonType = details.types;
-  }).catch((e) => {
-    console.error(e);
-  });
-}
+// function loadType(item) {
+//   let typeOfPokemon = item.detailsUrl;
+//   return fetch(url). then((response)=> {
+//     return response.json();
+//   }).then((details) =>{
+//     item.pokemonType = details.types;
+//   }).catch((e) => {
+//     console.error(e);
+//   });
+// }
   function loadDetails(item) { // Like loadList, this is also a promise functionn (fetch).
+    showLoadingMessage();
     let url = item.detailsUrl; // Creates variable wit the assigned value of item.detailsUrl -> detailsUrl comes from the pokemon parameter in the loadList() function above.
-    return fetch(url)/* this fetches the detailsUrl for the pokemon from the API*/.then(function (response) { //
+    return fetch(url)/* this fetches the detailsUrl for the pokemon from the API*/.then(function (response) {
       return response.json(); // Like in loadList(), we need to use the json property to parse the response body into JSON Data. This returns a promised object!
     }).then(function (details) {
+      hideLoadingMessage()
       // Now we add the details to the item
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
     }).catch(function (e) {
+      hideLoadingMessage();
       console.error(e);
     });
   }
@@ -77,16 +83,31 @@ function loadType(item) {
       console.log(item);
     });
   }
+// appending/removing
+  function showLoadingMessage() {
+    let pokemonList = document.querySelector(".pokemon-list"); //selects the pokemonList table.
+    let loadingMessage = document. createElement("paragraph");
+    loadingMessage = 'Loading. One moment!';
+    listpokemon.appendChild(loadingMessage);
+    pokemonList.appendChild(listpokemon);
+  }
 
-  return { //eturns all the essential functions.
+  function hideLoadingMessage() {
+    let elementToRemove = document.querySelector('paragraph');
+    elementToRemove.parentElement.removeChild(elementToRemove);
+  }
+
+  return { //eturns all the essential functions that we need to access outside of the IIFE to run the code.
     add: add,
     getAll: getAll,
     addListItem: addListItem,
     loadList: loadList,
     loadDetails: loadDetails,
-    showDetails: showDetails
+    showDetails: showDetails,
+    showLoadingMessage: showLoadingMessage,
+    hideLoadingMessage: hideLoadingMessage
   };
-})();
+})(); // end of all the promises - Huge chunk of connected code!
 
 // Here, we actually execute all the functions and promises we just have created above.
 pokemonRepository.loadList().then(function () {
