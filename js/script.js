@@ -83,16 +83,15 @@ let pokemonRepository = (function () { //Creates an IIFE.
       console.log(item);
     });
   }
-// appending/removing
-  function showLoadingMessage() {
-    let pokemonList = document.querySelector(".pokemon-list"); //selects the pokemonList table.
+
+  function showLoadingMessage() { // function that shows loading message.
     let loadingMessage = document. createElement("paragraph");
     loadingMessage = 'Loading. One moment!';
     listpokemon.appendChild(loadingMessage);
     pokemonList.appendChild(listpokemon);
   }
 
-  function hideLoadingMessage() {
+  function hideLoadingMessage() { //function that removes loadingmessage.
     let elementToRemove = document.querySelector('paragraph');
     elementToRemove.parentElement.removeChild(elementToRemove);
   }
