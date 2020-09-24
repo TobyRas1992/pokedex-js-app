@@ -85,14 +85,13 @@ let pokemonRepository = (function () { //Creates an IIFE.
   }
 
   function showLoadingMessage() { // function that shows loading message.
-    let loadingMessage = document. createElement("paragraph");
-    loadingMessage = 'Loading. One moment!';
-    listpokemon.appendChild(loadingMessage);
-    pokemonList.appendChild(listpokemon);
+    let loadingMessage = document.createElement('P');
+    loadingMessage.innerText = 'Loading. One moment!';
+    document.body.appendChild(loadingMessage);
   }
 
   function hideLoadingMessage() { //function that removes loadingmessage.
-    let elementToRemove = document.querySelector('paragraph');
+    let elementToRemove = document.querySelector('P');
     elementToRemove.parentElement.removeChild(elementToRemove);
   }
 
