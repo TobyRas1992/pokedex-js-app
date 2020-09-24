@@ -12,9 +12,11 @@ let pokemonRepository = (function () { //Creates an IIFE.
       console.log("pokemon is not correct");
     }
   }
+  
   function getAll() { // simple function that returns the value of pokemonList.
     return pokemonList;
   }
+
   function addListItem(pokemon) {
     // Starting off with some DOM manipulation through querySelectors.
     let pokemonList = document.querySelector(".pokemon-list"); //selects the pokemonList table.
