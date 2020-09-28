@@ -67,9 +67,10 @@ let pokemonRepository = (function () { //start of IIFE
     });
   }
 
+  // Function that will display the modal
   function showModal(item) {
     pokemonInfo = pokemonRepository.loadDetails();
-    modalContainer.innerHTML = '';
+    // modalContainer.innerHTML = '';
     let modal = document.createElement('div');
     modal.classList.add('modal');
 
@@ -92,16 +93,18 @@ let pokemonRepository = (function () { //start of IIFE
     modalContainer.classList.add('is-visible');
   }
 
+  // Function that will hide the modal 
   function hideModal() {
     modalContainer.classList.remove('is-visible');
   }
 
+    // Escape key closes modal
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
       hideModal();
     }
   });
-
+  // clicking modal closes it
   modalContainer.addEventListener('click', (e) => {
     let target = e.target;
     if (target === modalContainer) {
