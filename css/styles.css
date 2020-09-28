@@ -89,6 +89,17 @@ min-width: var(--bodyMinWidth);
   text-align: center;  
 }
 
+.modal {
+  margin: auto;
+  display: inline-block;
+  box-sizing: border-box;
+  background: #fff;
+  padding: 15px;
+  width: 100%;
+  max-width: 700px;
+  text-align: left;
+}
+
 @media screen and (max-width: 500px) {
   .header a {
     float: none;
