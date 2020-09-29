@@ -16,7 +16,7 @@ let pokemonRepository = (function () { //start of IIFE
     return pokemonList;
   }
 
-  // adds 
+  // creates the list + button + eventListener for modal
   function addListItem(pokemon) {
     let pokemonList = document.querySelector(".pokemon-list");
     let listpokemon = document.createElement("li");
@@ -70,7 +70,7 @@ let pokemonRepository = (function () { //start of IIFE
   // Function that will display the modal
   function showModal(item) {
     pokemonInfo = pokemonRepository.loadDetails();
-    // modalContainer.innerHTML = '';
+    modalContainer.innerHTML = '';
     let modal = document.createElement('div');
     modal.classList.add('modal');
 
