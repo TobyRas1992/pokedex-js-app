@@ -61,18 +61,27 @@ let pokemonRepository = (function () { //start of IIFE
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
+    }).then( () => {
+      return item;
     }).catch(function (e) {
       hideLoadingMessage();
       console.error(e);
     });
+
   }
 
   // Function that will display the modal
   function showModal(item) {
-    pokemonInfo = pokemonRepository.loadDetails(apiUrl);
     modalContainer.innerHTML = '';
     let modal = document.createElement('div');
     modal.classList.add('modal');
+    
+    // here I have access to pokemonInfo
+    pokemonRepository.loadDetails(item).then{function(pokemonInfo) {
+      return pokemonInfo;
+    }};
+
+    modal.innerHTML = pokemonInfo.imageUrl;
 
     let closeButtonElement = document.createElement('button');
     closeButtonElement.classList.add('modal-close');
