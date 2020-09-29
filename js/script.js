@@ -69,7 +69,7 @@ let pokemonRepository = (function () { //start of IIFE
 
   // Function that will display the modal
   function showModal(item) {
-    pokemonInfo = pokemonRepository.loadDetails();
+    pokemonInfo = pokemonRepository.loadDetails(apiUrl);
     modalContainer.innerHTML = '';
     let modal = document.createElement('div');
     modal.classList.add('modal');
