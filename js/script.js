@@ -1,6 +1,6 @@
 let pokemonRepository = (function () { //start of IIFE
   let pokemonList = []; // Creates empty array for pokemon
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150'; //api variable
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150'; //api variable - this is simply the list with names and pokemon URLs. 
   let modalContainer = document.querySelector('#modal-container'); //modal container variable
 
   function add(pokemon) { // add function - takes pokemon parameter and checks if it's correct, then pushes it.
@@ -32,9 +32,9 @@ let pokemonRepository = (function () { //start of IIFE
 
   function loadList() { 
     showLoadingMessage();
-    return fetch(apiUrl).then(function (response) {
-      return response.json();
-    }).then(function (json) {
+    return fetch(apiUrl).then(function (response) { //fetches the list of Pokemon from the external API.
+      return response.json(); //This returns a promise object! You can't access the internal properties yet.
+    }).then(function (json) { // The actual JSON response. 
       hideLoadingMessage();
       json.results.forEach(function (item) {
         let pokemon = {
@@ -61,6 +61,7 @@ let pokemonRepository = (function () { //start of IIFE
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
+      item.name = details.forms.name;
     }).then( () => {
       return item;
     }).catch(function (e) {
@@ -75,22 +76,22 @@ let pokemonRepository = (function () { //start of IIFE
     modalContainer.innerHTML = '';
     let modal = document.createElement('div');
     modal.classList.add('modal');
-    
-    // here I have access to pokemonInfo
-    pokemonRepository.loadDetails(item).then(function(pokemonInfo) {
-      return pokemonInfo; // I need to do something here. This is a loose end.
-    });
 
-    modal.innerHTML = pokemonInfo.imageUrl;
+    pokemonRepository.loadDetails(item).then(function(pokemonInfo) {
+      let myImage = document.createElement('img');
+      myImage.classList.add('pokemon-image');
+      myImage.src = pokemonInfo.imageUrl;
+      modal.appendChild(myImage);
+      let pokeName = document.createElement('h3');
+      pokeName.classList.add('pokemon-name');
+      pokeName = pokemonInfo.name;
+      modal.appendChild(pokeName);
+    });
 
     let closeButtonElement = document.createElement('button');
     closeButtonElement.classList.add('modal-close');
     closeButtonElement.innerText = 'Close.';
     closeButtonElement.addEventListener('click', hideModal);
-
-    let pokemonImage = document.createElement('img');
-    pokemonImage.classList.add('pokemon-image');
-
 
     let titleElement = document.createElement('h1');
     titleElement.innerText = 'title'; 
@@ -99,26 +100,23 @@ let pokemonRepository = (function () { //start of IIFE
     contentElement.innerText = 'Hey'
 
     modal.appendChild(closeButtonElement);
-    modal.appendChild(pokemonImage);
     modal.appendChild(titleElement);
     modal.appendChild(contentElement);
     modalContainer.appendChild(modal);
 
-    modalContainer.classList.add('is-visible');
+    modalContainer.classList.add('is-visible'); // Toggles modal on. 
   }
 
-  // Function that will hide the modal 
   function hideModal() {
     modalContainer.classList.remove('is-visible');
   }
 
-    // Escape key closes modal
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
       hideModal();
     }
   });
-  // clicking modal closes it
+ 
   modalContainer.addEventListener('click', (e) => {
     let target = e.target;
     if (target === modalContainer) {
