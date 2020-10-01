@@ -77,9 +77,9 @@ let pokemonRepository = (function () { //start of IIFE
     modal.classList.add('modal');
     
     // here I have access to pokemonInfo
-    pokemonRepository.loadDetails(item).then{function(pokemonInfo) {
-      return pokemonInfo;
-    }};
+    pokemonRepository.loadDetails(item).then(function(pokemonInfo) {
+      return pokemonInfo; // I need to do something here. This is a loose end.
+    });
 
     modal.innerHTML = pokemonInfo.imageUrl;
 
@@ -88,6 +88,10 @@ let pokemonRepository = (function () { //start of IIFE
     closeButtonElement.innerText = 'Close.';
     closeButtonElement.addEventListener('click', hideModal);
 
+    let pokemonImage = document.createElement('img');
+    pokemonImage.classList.add('pokemon-image');
+
+
     let titleElement = document.createElement('h1');
     titleElement.innerText = 'title'; 
 
@@ -95,6 +99,7 @@ let pokemonRepository = (function () { //start of IIFE
     contentElement.innerText = 'Hey'
 
     modal.appendChild(closeButtonElement);
+    modal.appendChild(pokemonImage);
     modal.appendChild(titleElement);
     modal.appendChild(contentElement);
     modalContainer.appendChild(modal);
