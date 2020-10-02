@@ -102,6 +102,10 @@ let pokemonRepository = (function () { //start of IIFE
     heightElement.classList.add('grid','grid-item','modal-content');
     heightElement.innerText = 'Height: ' + (item.height / 10) + ' m';
 
+    let weightElement = document.createElement('p');
+    weightElement.classList.add('grid','grid-item','modal-content');
+    weightElement.innerText = 'Weight: ' + (item.weight / 10) + ' kg';
+
     let typesElement = document.createElement('p');
     typesElement.classList.add('grid','grid-item','modal-content');
       if (item.types.length === 1) {
@@ -121,8 +125,6 @@ let pokemonRepository = (function () { //start of IIFE
     //   modal.appendChild(imageElement);
     // });
 
-
-    
     modalContainer.appendChild(modal);
     modal.appendChild(closeButtonElement);
     modal.appendChild(nameElement);

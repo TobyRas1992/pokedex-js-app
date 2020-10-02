@@ -59,11 +59,30 @@ min-width: var(--bodyMinWidth);
   float: right;
 }
 
+h2 {
+  font-size: 24;
+  text-align: center;
+}
 .pokemon-button {
+  border: none;
   background-color: black;
   color: white;
+  text-decoration: none;
+  transition: 0.5s opacity;
+  margin: 5px;
+  display: inline-block;
+  width: 150px;
+  text-transform: capitalize;
 }
 
+.pokemon-button:hover {
+  background-color: rgba(0, 0, 0, 0.589);
+}
+
+.pokemon-list {
+  max-height: calc(100vh - 150px);
+  overflow: auto;
+}
 #modal-container {
   display: none;
 }
