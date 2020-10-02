@@ -15,7 +15,6 @@ font-family: 'Raleway', sans-serif;
 font-weight:var(--primaryFontWeight);
 font-size:var(--primaryFontSize);
 line-height: var(--primaryLineHeight);
-color: var(primaryFont);
 min-width: var(--bodyMinWidth);
 }
 
@@ -43,7 +42,7 @@ min-width: var(--bodyMinWidth);
 }
 
 .header a.logo {
-  font-size: 25px;
+  font-size: 45px;
   font-weight: bold;
   ;
 }
@@ -68,7 +67,9 @@ h1 {
 
 h2 {
   font-size: 24;
+  color: #575b84;
   text-align: center;
+  text-transform: capitalize;
 }
 .pokemon-button {
   border: none;
@@ -132,6 +133,13 @@ h2 {
 .modal-image {
   width: 300px;
   height: auto;
+}
+.modal.title {
+  color: #575b84;
+}
+
+.grid-item {
+  color: #575b84;
 }
 
 

@@ -71,8 +71,6 @@ let pokemonRepository = (function () { //start of IIFE
       });
       item.height = details.height;
       item.weight = details.weight;
-    }).then( () => {
-      // return item; //maybe this is superfluous. come back later!
     }).catch(function (e) {
       hideLoadingMessage();
       console.error(e);
