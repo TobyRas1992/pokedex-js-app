@@ -30,7 +30,7 @@ let pokemonRepository = (function () { //start of IIFE
     });
   }
 
-  function loadList() { 
+  function loadList() { // Loads the list items with name + url 
     showLoadingMessage();
     return fetch(apiUrl).then(function (response) { //fetches the list of Pokemon from the external API.
       return response.json(); //This returns a promise object! You can't access the internal properties yet.
@@ -38,9 +38,8 @@ let pokemonRepository = (function () { //start of IIFE
       hideLoadingMessage();
       json.results.forEach(function (item) {
         let pokemon = {
-          name: item.name,
-          detailsUrl: item.url,
-          type: item.type
+          name: item.name, // The pokemon name
+          detailsUrl: item.url // link to their URL. 
         };
         add(pokemon); 
         console.log(pokemon); 
@@ -150,7 +149,7 @@ let pokemonRepository = (function () { //start of IIFE
 
 //picks the repository -> # -> gets the array (getAll) 
 //-> foreach item: add to the visible list
-pokemonRepository.loadList().then(function () {
+pokemonRepository.loadList().then(function () { // now the data is loaded! 
   pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
   });
