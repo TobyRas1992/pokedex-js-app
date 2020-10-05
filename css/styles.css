@@ -29,7 +29,6 @@ min-width: var(--bodyMinWidth);
 }
 
 .header a {
-  /* float: left; */
   display: flex;
   justify-content: center;
   color: var(--primaryFont);
