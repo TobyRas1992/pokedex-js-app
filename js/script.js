@@ -1,15 +1,65 @@
 let pokemonRepository = (function() {
   let pokemonList = [];
   let apiURL = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-  let modalBody = $('.modal-body');
-  let modalTitle = $('.modal-title');
-  let modalheader = $('.modal-header');
-  let $modalContainer = $('#modal-container');
   
-  // Clear existing content of the modal
-  modalheader.empty();
-  modalTitle.empty();
-  modalBody.empty();
+  function add(pokemon) { // add function - takes pokemon parameter and checks if it's correct, then pushes it.
+    if (
+      typeof pokemon === "object" && "name" in pokemon) {
+        pokemonList.push(pokemon); 
+      } else {
+      console.log("pokemon is not correct");
+      }
+  }
+
+  function getAll() {
+    return repository;
+  }
+
+  function addListItem (pokemon){
+    pokemonRepository.loadDetails(pokemon).then(function(){
+      var $row = $('.row');
+      var $card = $('<div class="card" style="width: 400px"></div>');
+      var $image = $(
+        '<img class="card-img-top" alt="Card image" style="width:20%" />'
+      );
+      $image.attr('src', pokemon.imageURLFront);
+      var $cardBody = $('<div class="card-body"></div>');
+      var $cardTitle = $("<h4 class='card-title' >" + pokemon.name + "</h4>");
+      var $seeProfile = $(
+        '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">See Profile</button>'
+      );
+
+      $row.append($card);
+      $card.append($image);
+      $card.append($cardBody);
+      $cardBody.append($cardTitle);
+      $cardBody.append($seeProfile);
+    
+      $seeProfile.on("click", function (event) {
+        showDetails(pokemon);
+      });
+    });
+  }
+
+  function showModal (item){
+    let modalBody = $('.modal-body');
+    let modalTitle = $('.modal-title');
+    let modalheader = $('.modal-header');
+    let $modalContainer = $('#modal-container');
+  
+    // Clear existing content of the modal
+    modalheader.empty();
+    modalTitle.empty();
+    modalBody.empty();
+
+    let nameElement = $('<h1>' + item.name + '</h1>');
+    let imageElementFront = $('<img class= "modal-img" style= "width: 50%">');
+    imageElementFront.attr('src', item.imageURLFront);
+    let imageElementBack = $('<img class="modal-img" style= "width: 50%"');
+    imageElementBack.attr('src', item.imageURLBack);
+    let heightElement = $('<p>' + 'height :' + item.height + '</p>');
+
+  }
 
 
 })();
