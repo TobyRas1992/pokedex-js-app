@@ -1,3 +1,20 @@
+let pokemonRepository = (function() {
+  let pokemonList = [];
+  let apiURL = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  let modalBody = $('.modal-body');
+  let modalTitle = $('.modal-title');
+  let modalheader = $('.modal-header');
+  let $modalContainer = $('#modal-container');
+  
+  // Clear existing content of the modal
+  modalheader.empty();
+  modalTitle.empty();
+  modalBody.empty();
+
+
+})();
+
+
 // let pokemonRepository = (function () { //start of IIFE
 //   let pokemonList = []; // Creates empty array for pokemon
 //   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150'; //api variable - this is simply the list with names and pokemon URLs. 
