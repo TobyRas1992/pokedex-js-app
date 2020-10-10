@@ -1,105 +1,3 @@
-let pokemonRepository = (function() {
-  let pokemonList = [];
-  let apiURL = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-  
-  // add function - takes pokemon parameter and checks if it's correct, then pushes it.
-  function add(pokemon) { 
-    if (
-      typeof pokemon === "object" && "name" in pokemon) {
-        pokemonList.push(pokemon); 
-      } else {
-      console.log("pokemon is not correct");
-      }
-  }
-
-  // returns the pokemon objects from the API.
-  function getAll() {
-    return repository;
-  }
-
-// creates the pokemon card and appends it
-  function addListItem (pokemon){
-    pokemonRepository.loadDetails(pokemon).then(function(){
-      let $row = $('.row');
-      let $card = $('<div class="card" style="width: 400px"></div>');
-      let $image = $(
-        '<img class="card-img-top" alt="Card image" style="width:20%" />'
-      );
-      $image.attr('src', pokemon.imageURLFront);
-      let $cardBody = $('<div class="card-body"></div>');
-      let $cardTitle = $("<h4 class='card-title' >" + pokemon.name + "</h4>");
-      let $seeProfile = $(
-        '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">See Profile</button>'
-      );
-
-      $row.append($card);
-      $card.append($image);
-      $card.append($cardBody);
-      $cardBody.append($cardTitle);
-      $cardBody.append($seeProfile);
-    
-      $seeProfile.on("click", function (event) {
-        showDetails(pokemon);
-      });
-    });
-  }
-
-  //displays + styles modal
-  function showModal (item){
-    let modalBody = $('.modal-body');
-    let modalTitle = $('.modal-title');
-    let modalheader = $('.modal-header');
-    // let $modalContainer = $('#modal-container');
-  
-    // Clear existing content of the modal
-    modalheader.empty();
-    modalTitle.empty();
-    modalBody.empty();
-
-    let nameElement = $('<h1>' + item.name + '</h1>');
-    let imageElementFront = $('<img class= "modal-img" style= "width: 50%">');
-    imageElementFront.attr('src', item.imageURLFront);
-    let imageElementBack = $('<img class="modal-img" style= "width: 50%"');
-    imageElementBack.attr('src', item.imageURLBack);
-    let heightElement = $('<p>' + 'height :' + item.height + '</p>');
-    let weightElement = $('<p>' + 'weight :' + item.weight + '</p>');
-    typesElement = $('<p>' + 'types :' + item.types + '</p>');    
-    let abilitiesElement = $("<p>" + "abilities : " + item.abilities + "</p>");
-
-    modalTitle.append(nameElement);
-    modalBody.append(imageElementFront);
-    modalBody.append(imageElementBack);
-    modalBody.append(heightElement);
-    modalBody.append(weightElement);
-    modalBody.append(typesElement);
-    modalBody.append(abilitiesElement);
-
-  }
-
-  function showDetails(item){
-    pokemonRepository.loadDetails(item).then(function(){
-      console.log(item);
-      showModal(item);
-    });
-  }
-
-  function loadList() {
-
-  }
-
-  function loadDetails (item) {
-
-  }
-
-  return {
-    add: add,
-    getAll: getall,
-  };
-})();
-
-
-
-
 let pokemonRepository = (function () { //start of IIFE
   let pokemonList = []; // Creates empty array for pokemon
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150'; //api variable - this is simply the list with names and pokemon URLs. 
@@ -217,13 +115,6 @@ let pokemonRepository = (function () { //start of IIFE
     let imageElement = document.createElement('img');
     imageElement.classList.add('grid','grid-item','modal-image');
     imageElement.setAttribute('src', item.imageUrl);
-  
-    // pokemonRepository.loadDetails(item).then(function(pokemonInfo) { // we call the loadDetails() function to get the pokemon details. 
-    //   let imageElement = document.createElement('img');
-    //   imageElement.classList.add('grid','grid-item','modal-image');
-    //   imageElement.src = pokemonInfo.imageUrl;
-    //   modal.appendChild(imageElement);
-    // });
 
     modalContainer.appendChild(modal);
     modal.appendChild(closeButtonElement);
@@ -243,7 +134,7 @@ let pokemonRepository = (function () { //start of IIFE
         hideModal();
       }
     });
-   
+  
     modalContainer.addEventListener('click', (e) => {
       let target = e.target;
       if (target === modalContainer) {
