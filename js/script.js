@@ -13,7 +13,7 @@ let pokemonRepository = (function () { //start of IIFE
     let elementToRemove = document.querySelector('P');
     elementToRemove.parentElement.removeChild(elementToRemove);
   }
-  
+
   function add(pokemon) { // add function - takes pokemon parameter and checks if it's correct, then pushes it.
   if (
     typeof pokemon === "object" && "name" in pokemon) {
@@ -31,7 +31,6 @@ let pokemonRepository = (function () { //start of IIFE
     loadDetails(pokemon).then(function () {
       showModal(pokemon);
     });
-
   }
   
   // Loads pokemon data from API. Fires after loadDetails(). 
@@ -57,7 +56,7 @@ let pokemonRepository = (function () { //start of IIFE
 
   // creates the list + button + eventListener for modal
   function addListItem(pokemon) {
-    let pokemonButtonList = document.querySelector(".pokemon-list");
+    let pokemonButtonList = $(".list-group");
     let pokemonListItem = document.createElement("li");
     let pokemonButton = document.createElement("button");
     pokemonButton.innerText = pokemon.name; 
@@ -154,8 +153,6 @@ let pokemonRepository = (function () { //start of IIFE
       }
     });
   }
-  
-
 
   return { 
     add: add,
