@@ -2,40 +2,38 @@ let pokemonRepository = (function () { //start of IIFE
   let pokemonList = []; // Creates empty array for pokemon
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150'; //api variable - this is simply the list with names and pokemon URLs. 
   let modalContainer = document.querySelector('#modal-container'); 
+  
+  function showLoadingMessage() {
+    let loadingMessage = document.createElement('P');
+    loadingMessage.innerText = 'Loading. One moment!';
+    document.body.appendChild(loadingMessage);
+  }
 
+  function hideLoadingMessage() {
+    let elementToRemove = document.querySelector('P');
+    elementToRemove.parentElement.removeChild(elementToRemove);
+  }
+  
   function add(pokemon) { // add function - takes pokemon parameter and checks if it's correct, then pushes it.
-    if (
-      typeof pokemon === "object" && "name" in pokemon) {
-        pokemonList.push(pokemon); 
-      } else {
+  if (
+    typeof pokemon === "object" && "name" in pokemon) {
+      pokemonList.push(pokemon); 
+    } else {
       console.log("pokemon is not correct");
-      }
+    }
   }
   
   function getAll() { // returns the pokemon array. 
     return pokemonList;
   }
-
+  
   function showDetails (pokemon) {
     loadDetails(pokemon).then(function () {
       showModal(pokemon);
     });
 
   }
-  // creates the list + button + eventListener for modal
-  function addListItem(pokemon) {
-    let pokemonButtonList = document.querySelector(".pokemon-list");
-    let pokemonListItem = document.createElement("li");
-    let pokemonButton = document.createElement("button");
-    pokemonButton.innerText = pokemon.name; 
-    pokemonButton.classList.add('pokemon-button');
-    pokemonListItem.appendChild(pokemonButton);
-    pokemonButtonList.appendChild(pokemonListItem);
-    pokemonButton.addEventListener("click", function(event) {
-      showDetails(pokemon);
-    });
-  }
-
+  
   // Loads pokemon data from API. Fires after loadDetails(). 
   function loadList() { 
     showLoadingMessage();
@@ -57,6 +55,20 @@ let pokemonRepository = (function () { //start of IIFE
     });
   }
 
+  // creates the list + button + eventListener for modal
+  function addListItem(pokemon) {
+    let pokemonButtonList = document.querySelector(".pokemon-list");
+    let pokemonListItem = document.createElement("li");
+    let pokemonButton = document.createElement("button");
+    pokemonButton.innerText = pokemon.name; 
+    pokemonButton.classList.add('pokemon-button');
+    pokemonListItem.appendChild(pokemonButton);
+    pokemonButtonList.appendChild(pokemonListItem);
+    pokemonButton.addEventListener("click", function(event) {
+      showDetails(pokemon);
+    });
+  }
+  
   // Loads additional details from individual pokemon URL from API
   function loadDetails(item) { 
     showLoadingMessage();
@@ -144,16 +156,6 @@ let pokemonRepository = (function () { //start of IIFE
   }
   
 
-  function showLoadingMessage() {
-    let loadingMessage = document.createElement('P');
-    loadingMessage.innerText = 'Loading. One moment!';
-    document.body.appendChild(loadingMessage);
-  }
-
-  function hideLoadingMessage() {
-    let elementToRemove = document.querySelector('P');
-    elementToRemove.parentElement.removeChild(elementToRemove);
-  }
 
   return { 
     add: add,
@@ -166,7 +168,7 @@ let pokemonRepository = (function () { //start of IIFE
 
 //picks the repository -> # -> gets the array (getAll) 
 //-> foreach item: add to the visible list
-pokemonRepository.loadList().then(function () { // now the data is loaded! 
+pokemonRepository.loadList().then(function () {
   pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
   });
