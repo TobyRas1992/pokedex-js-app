@@ -86,12 +86,7 @@ h2 {
   opacity: 0.7;
 }
 
-.pokemon-list {
-  max-height: calc(100vh - 150px);
-  overflow: auto;
-  list-style-type: none;
-  text-align: center;
-}
+
 #modal-container {
   display: none;
 }

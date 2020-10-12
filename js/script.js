@@ -57,16 +57,16 @@ let pokemonRepository = (function () { //start of IIFE
   // creates the list + button + eventListener for modal
   function addListItem(pokemon) {
     pokemonRepository.loadDetails(pokemon).then (()=>{
-      let pokemonButtonList = $(".list-group");
+      let pokemonButtonList = document.querySelector("#list-group");
       let pokemonListItem = document.createElement("li");
       let pokemonButton = document.createElement("button");
       pokemonButton.innerText = pokemon.name; 
       pokemonButton.classList.add('pokemon-button');
       pokemonListItem.appendChild(pokemonButton);
       pokemonButtonList.appendChild(pokemonListItem);
-      pokemonButton.addEventListener("click", function(event) {
+      pokemonButton.addEventListener("click", (event) => {
         showDetails(pokemon);
-    })
+    });
     });
   }
   
