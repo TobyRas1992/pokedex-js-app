@@ -59,6 +59,7 @@ let pokemonRepository = (function () { //start of IIFE
     pokemonRepository.loadDetails(pokemon).then (()=>{
       let pokemonButtonList = document.querySelector("#list-group");
       let pokemonListItem = document.createElement("li");
+      pokemonListItem.classList.add('list-group-item');
       let pokemonButton = document.createElement("button");
       pokemonButton.innerText = pokemon.name; 
       pokemonButton.classList.add('pokemon-button');
