@@ -97,8 +97,29 @@ let pokemonRepository = (function () { //start of IIFE
 
   // Function that will display the modal
   function loadDetailsToModal(item) {
+    
     let modalTitle = document.querySelector('#exampleModalCenterTitle');
     modalTitle.innerText(item.name);
+    let modalBody = document.querySelector('.modal-body');
+    let heightElement = document.createElement('p');
+    heightElement.innerText = 'Height: ' + (item.height /10) + ' m';
+    let weightElement = document.createElement('p');
+    weightElement.innerText = 'Weight: ' + (item.weight / 10) + ' kg';
+    let typesElement = document.createElement('p');
+        if (item.types.length === 1) {
+            typesElement.innerText = 'Type: ' + item.types;
+          } else {
+            typesElement.innerText = 'Types: ' + item.types.join(', ');
+          }
+    let imageElement = document.createElement('img');
+    imageElement.setAttribute('src', item.imageUrl);
+    
+    modalBody.appendChild(heightElement);
+    modalBody.appendChild(weightElement);
+    modalBody.appendChild(typesElement);
+    modalBody.appendChild(imageElement);
+
+
   //   modalContainer.innerHTML = '';
 
   //   let modal = document.createElement('div');
