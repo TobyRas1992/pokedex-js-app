@@ -1,21 +1,10 @@
 :root {
   --primaryColor: #ffd9ab;
-  --primaryFont: white;
-  --primaryFontWeight: 400;
-  --primaryFontSize: 16px;
-  --primaryLineHeight: 1.6;
-  --bodyMinWidth: 400px;
-  --headerBackgroundColor: #a3588b;
 }
 
 body {
 background: var(--primaryColor);
-color: var(--primaryFont);
 font-family: 'Raleway', sans-serif;
-font-weight:var(--primaryFontWeight);
-font-size:var(--primaryFontSize);
-line-height: var(--primaryLineHeight);
-min-width: var(--bodyMinWidth);
 }
 
 * {
