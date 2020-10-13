@@ -61,8 +61,8 @@ let pokemonRepository = (function () { //start of IIFE
       let pokemonListItem = document.createElement("li");
       pokemonListItem.classList.add('list-group-item');
       let pokemonButton = document.createElement("button");
+      pokemonButton.innerHTML.add('<button type="button" class="btn btn-light" data-toggle = "modal" tata-target= "exampleModal">Light</button>');
       pokemonButton.innerText = pokemon.name; 
-      pokemonButton.classList.add('pokemon-button');
       pokemonListItem.appendChild(pokemonButton);
       pokemonButtonList.appendChild(pokemonListItem);
       pokemonButton.addEventListener("click", (event) => {
@@ -70,7 +70,7 @@ let pokemonRepository = (function () { //start of IIFE
     });
     });
   }
-  
+
   // Loads additional details from individual pokemon URL from API
   function loadDetails(item) { 
     showLoadingMessage();
