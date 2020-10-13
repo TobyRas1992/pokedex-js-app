@@ -61,7 +61,11 @@ let pokemonRepository = (function () { //start of IIFE
       let pokemonListItem = document.createElement("li");
       pokemonListItem.classList.add('list-group-item');
       let pokemonButton = document.createElement("button");
-      pokemonButton.innerHTML.add('<button type="button" class="btn btn-light" data-toggle = "modal" tata-target= "exampleModal">Light</button>');
+      pokemonButton.classList.add('btn');
+      pokemonButton.classList.add('btn-light');
+      pokemonButton.setAttribute('type', 'button');
+      pokemonButton.setAttribute('data-toggle', 'modal');
+      pokemonButton.setAttribute('data-target', '#exampleModal');
       pokemonButton.innerText = pokemon.name; 
       pokemonListItem.appendChild(pokemonButton);
       pokemonButtonList.appendChild(pokemonListItem);
