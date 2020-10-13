@@ -29,7 +29,7 @@ let pokemonRepository = (function () { //start of IIFE
   
   function showDetails (pokemon) {
     loadDetails(pokemon).then(function () {
-      showModal(pokemon);
+      loadDetailsToModal(pokemon);
     });
   }
   
@@ -65,7 +65,7 @@ let pokemonRepository = (function () { //start of IIFE
       pokemonButton.classList.add('btn-light');
       pokemonButton.setAttribute('type', 'button');
       pokemonButton.setAttribute('data-toggle', 'modal');
-      pokemonButton.setAttribute('data-target', '#exampleModal');
+      pokemonButton.setAttribute('data-target', '#exampleModalCenter');
       pokemonButton.innerText = pokemon.name; 
       pokemonListItem.appendChild(pokemonButton);
       pokemonButtonList.appendChild(pokemonListItem);
@@ -96,69 +96,71 @@ let pokemonRepository = (function () { //start of IIFE
   }
 
   // Function that will display the modal
-  function showModal(item) {
-    modalContainer.innerHTML = '';
+  function loadDetailsToModal(item) {
+    let modalTitle = document.querySelector('#exampleModalCenterTitle');
+    modalTitle.innerText(item.name);
+  //   modalContainer.innerHTML = '';
 
-    let modal = document.createElement('div');
-    modal.classList.add('modal');
+  //   let modal = document.createElement('div');
+  //   modal.classList.add('modal');
 
-    let modalGrid = document.createElement('div');
-    modalGrid.classList.add('grid');
+  //   let modalGrid = document.createElement('div');
+  //   modalGrid.classList.add('grid');
     
-    let closeButtonElement = document.createElement('button');
-    closeButtonElement.classList.add('modal-close');
-    closeButtonElement.innerText = 'Close.';
-    closeButtonElement.addEventListener('click', hideModal);
+  //   let closeButtonElement = document.createElement('button');
+  //   closeButtonElement.classList.add('modal-close');
+  //   closeButtonElement.innerText = 'Close.';
+  //   closeButtonElement.addEventListener('click', hideModal);
 
-    let nameElement = document.createElement('h2');
-    nameElement.classList.add('modal-title');
-    nameElement.innerText = item.name;
+  //   let nameElement = document.createElement('h2');
+  //   nameElement.classList.add('modal-title');
+  //   nameElement.innerText = item.name;
 
-    let heightElement = document.createElement('p');
-    heightElement.classList.add('grid','grid-item','modal-content');
-    heightElement.innerText = 'Height: ' + (item.height / 10) + ' m';
+  //   let heightElement = document.createElement('p');
+  //   heightElement.classList.add('grid','grid-item','modal-content');
+  //   heightElement.innerText = 'Height: ' + (item.height / 10) + ' m';
 
-    let weightElement = document.createElement('p');
-    weightElement.classList.add('grid','grid-item','modal-content');
-    weightElement.innerText = 'Weight: ' + (item.weight / 10) + ' kg';
+  //   let weightElement = document.createElement('p');
+  //   weightElement.classList.add('grid','grid-item','modal-content');
+  //   weightElement.innerText = 'Weight: ' + (item.weight / 10) + ' kg';
 
-    let typesElement = document.createElement('p');
-    typesElement.classList.add('grid','grid-item','modal-content');
-      if (item.types.length === 1) {
-          typesElement.innerText = 'Type: ' + item.types;
-        } else {
-          typesElement.innerText = 'Types: ' + item.types.join(', ');
-        }
+  //   let typesElement = document.createElement('p');
+  //   typesElement.classList.add('grid','grid-item','modal-content');
+  //     if (item.types.length === 1) {
+  //         typesElement.innerText = 'Type: ' + item.types;
+  //       } else {
+  //         typesElement.innerText = 'Types: ' + item.types.join(', ');
+  //       }
 
-    let imageElement = document.createElement('img');
-    imageElement.classList.add('grid','grid-item','modal-image');
-    imageElement.setAttribute('src', item.imageUrl);
+  //   let imageElement = document.createElement('img');
+  //   imageElement.classList.add('grid','grid-item','modal-image');
+  //   imageElement.setAttribute('src', item.imageUrl);
 
-    modalContainer.appendChild(modal);
-    modal.appendChild(closeButtonElement);
-    modal.appendChild(nameElement);
-    modal.appendChild(modalGrid);
-    modalGrid.appendChild(heightElement);
-    modalGrid.appendChild(weightElement);
-    modalGrid.appendChild(typesElement);
-    modalGrid.appendChild(imageElement);
-    modalContainer.classList.add('is-visible'); // Toggles modal on. 
+  //   modalContainer.appendChild(modal);
+  //   modal.appendChild(closeButtonElement);
+  //   modal.appendChild(nameElement);
+  //   modal.appendChild(modalGrid);
+  //   modalGrid.appendChild(heightElement);
+  //   modalGrid.appendChild(weightElement);
+  //   modalGrid.appendChild(typesElement);
+  //   modalGrid.appendChild(imageElement);
+  //   modalContainer.classList.add('is-visible'); // Toggles modal on. 
 
-    function hideModal() {
-      modalContainer.classList.remove('is-visible');
-    }
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-        hideModal();
-      }
-    });
+  //   function hideModal() {
+  //     modalContainer.classList.remove('is-visible');
+  //   }
+  //   window.addEventListener('keydown', (e) => {
+  //     if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+  //       hideModal();
+  //     }
+  //   });
   
-    modalContainer.addEventListener('click', (e) => {
-      let target = e.target;
-      if (target === modalContainer) {
-        hideModal();
-      }
-    });
+  //   modalContainer.addEventListener('click', (e) => {
+  //     let target = e.target;
+  //     if (target === modalContainer) {
+  //       hideModal();
+  //     }
+  //   });
   }
 
   return { 
