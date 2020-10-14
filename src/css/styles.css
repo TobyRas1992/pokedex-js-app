@@ -1,0 +1,31 @@
+:root {
+  --primaryColor: #ffd9ab;
+}
+
+body {
+background: var(--primaryColor);
+font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.modal.title {
+  text-transform: capitalize;
+}
+
+.modal-image {
+  width: 300px;
+  height: auto;
+}
+
+ul {
+  list-style: none;
+}
+
