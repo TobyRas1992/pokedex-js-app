@@ -99,7 +99,8 @@ let pokemonRepository = (function () { //start of IIFE
   function loadDetailsToModal(item) {
     
     let modalTitle = document.querySelector('#exampleModalCenterTitle');
-    modalTitle.innerText(item.name);
+    modalTitle.innerHTML = "";
+    modalTitle.innerText = item.name;
     let modalBody = document.querySelector('.modal-body');
     let heightElement = document.createElement('p');
     heightElement.innerText = 'Height: ' + (item.height /10) + ' m';
@@ -113,7 +114,7 @@ let pokemonRepository = (function () { //start of IIFE
           }
     let imageElement = document.createElement('img');
     imageElement.setAttribute('src', item.imageUrl);
-    
+    modalBody.innerHTML = "";
     modalBody.appendChild(heightElement);
     modalBody.appendChild(weightElement);
     modalBody.appendChild(typesElement);
