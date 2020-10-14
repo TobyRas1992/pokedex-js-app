@@ -7,17 +7,6 @@ background: var(--primaryColor);
 font-family: 'Raleway', sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-.header {
-  overflow: hidden;
-  background-color: var(--headerBackgroundColor);
-  padding: 20px 10px;
-}
-
-
 h1 {
   text-align: center;
 }
@@ -28,7 +17,7 @@ h2 {
 }
 
 .modal.title {
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .modal-image {
